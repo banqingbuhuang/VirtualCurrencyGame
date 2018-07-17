@@ -342,12 +342,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 $('#buy').append(html1);
                 // $('#title2').after(html2);
                 $('#buy_table').dataTable({  //文档中好像用.on事件函数
-                    "initComplete": function () {
-                        var api = this.api();
-                        api.$('#tds').click(function () {
-                            api.search(this.innerHTML).draw();
-                        });
-                    }
+                    "order":[3,"desc"]
                 });
             },
             error: function (e) {
@@ -355,6 +350,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             }
         });
         let socket = io.connect('http://127.0.0.1:3001');
+        // let socket = io.connect('http://192.168.1.159:3001');
         let username = "<%= username%>";
         socket.on('connect', function () {
             socket.emit('update', username);
